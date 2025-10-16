@@ -71,8 +71,16 @@ ggplot(Coffee) + geom_point(aes(x = Altitude, y = Rating), col = "maroon4") + la
 
 mean1 <- aggregate(Rating ~ Altitude, data = Coffee, FUN = mean)
 sd1 <- aggregate(Rating ~ Altitude, data = Coffee, FUN = sd)
+```
+#### **The Relationship of Altitude and Ratings**
 
+The mean of the rating when the altitude is 1500 is `r round(mean1$Rating[mean1$Altitude == 1500], 2)` while the mean of the coffee bean rating when the altitude is 1000 is `r round(mean1$Rating[mean1$Altitude == 1000], 2)`. 
 
+The standard deviation of the rating when the altitutde is 1500 is `r round(sd1$Rating[sd1$Altitude == 1500], 2)` while the standard deviation of the coffee bean rating when the standard deviation is 1000 is `r round(sd1$Rating[sd1$Altitude == 1000], 2)`. 
+
+By observing both of the mean and standard deviation between two different altitude's, one ca n come to the conclusion that beans produced in a higher altitude produce a **<span style="color:blue"> higher rating</span>**  than those produced in a lower altitude. To add to this observation, the graph not only supports the conclusion but adds depth. Beans that were made in an altitude of 2000 or higher doesn't automatically mean they will be rated higher, and vise versa to beans found in an altitude below 1000. 
+
+```{r two, echo=FALSE}
 #Graph to compare Rating and Processing Method
 
 ggplot(Coffee) + geom_boxplot(aes(x = ProcessingMethod, y = Rating), fill = "lavender", col = "plum4") + labs(title = "Processing Methods vs Rating") + theme_bw()
@@ -82,31 +90,7 @@ ggplot(Coffee) + geom_boxplot(aes(x = ProcessingMethod, y = Rating), fill = "lav
 
 mean2 <- aggregate(Rating ~ ProcessingMethod, data = Coffee, FUN = mean)
 sd2 <- aggregate(Rating ~ ProcessingMethod, data = Coffee, FUN = sd)
-
-
-#Graph to compare Rating and Processing Method
-
-
-ggplot(Coffee) + geom_boxplot(aes(x = BeanColor, y = Rating), fill = "peachpuff", col = "peru") + labs(title = "Bean color vs Rating") + theme_bw()
-
-
-#Find the stats, mean and standard diviation, of the correlation of Rating and Bean Color
-
-mean3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = mean)
-sd3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = sd)
-
-
-
 ```
-
-#### **The Relationship of Altitude and Ratings**
-
-The mean of the rating when the altitude is 1500 is `r round(mean1$Rating[mean1$Altitude == 1500], 2)` while the mean of the coffee bean rating when the altitude is 1000 is `r round(mean1$Rating[mean1$Altitude == 1000], 2)`. 
-
-The standard deviation of the rating when the altitutde is 1500 is `r round(sd1$Rating[sd1$Altitude == 1500], 2)` while the standard deviation of the coffee bean rating when the standard deviation is 1000 is `r round(sd1$Rating[sd1$Altitude == 1000], 2)`. 
-
-By observing both of the mean and standard deviation between two different altitude's, one ca n come to the conclusion that beans produced in a higher altitude produce a **<span style="color:blue"> higher rating</span>**  than those produced in a lower altitude. To add to this observation, the graph not only supports the conclusion but adds depth. Beans that were made in an altitude of 2000 or higher doesn't automatically mean they will be rated higher, and vise versa to beans found in an altitude below 1000. 
-
 
 #### **The Relationship of Processing Method and Ratings**
 
@@ -117,8 +101,20 @@ The standard deviation of the rating in regards to using the natural/dry process
 
 From the statistics, it can be observed that if coffee beans were processsed using the natural/dry method it will have a **<span style="color:blue">slightly higher</span>** chance to be rated higher than coffee beans that used the washed/wet method.
 
-#### **The Relationship of Bean Color and Ratings**
+```{r two, echo=FALSE}
+#Graph to compare Rating and Bean Color
 
+
+ggplot(Coffee) + geom_boxplot(aes(x = BeanColor, y = Rating), fill = "peachpuff", col = "peru") + labs(title = "Bean color vs Rating") + theme_bw()
+
+
+#Find the stats, mean and standard diviation, of the correlation of Rating and Bean Color
+
+mean3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = mean)
+sd3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = sd)
+```
+
+#### **The Relationship of Bean Color and Ratings**
 
 The mean of the rating when the bean color is blue-green is `r round(mean3$Rating[mean3$BeanColor == "Blue-Green"], 2)` while the mean of the rating when the bean color is green is `r round(mean3$Rating[mean3$BeanColor == "Green"], 2)`.
 
@@ -146,10 +142,6 @@ ggplot(Coffee) + geom_jitter(aes(x = AltitudeCategory, y = Rating, colour = Proc
 
 The graph is able to display that most coffee beans are found in a medium altitude, and have an average rating in the 80's. Additionally, it appears that the most common processing method employed by companies is washed/wet if the altitude is medium or high. If the altitude is low, companies tend to lean in using the processing method of natural/dry. Based on the graph, it can be assumed that bean color has little to no effect on the rating unlike the other predictor variables.
 
-#### Choice Elements
-
-I had hyper linked two links in the introduction which lead to the original website, and to a website which explains how coffee beans are rated. Additionally, I used in-line code to present accurate statistics of my bivariate plots. I made sure to change the font of the whole file while highlighting emphasize words on the impact of the predictor variable on the outcome variable. I created one variable which splits the altitude column into three parts- low, medium, high- for better comprehension. To add to this, I used the variable on a multivariate graph to better showcase it with the other two predictor variables.  
-
 ## ______________________
 ## **Conclusion**
 
@@ -161,6 +153,10 @@ To further deepen the research, future studies should consider analyzing flavor 
 
 ## ______________________
 
+#### Choice Elements
+
+I had hyper linked two links in the introduction which lead to the original website, and to a website which explains how coffee beans are rated. Additionally, I used in-line code to present accurate statistics of my bivariate plots. I made sure to change the font of the whole file while highlighting emphasize words on the impact of the predictor variable on the outcome variable. I created one variable which splits the altitude column into three parts- low, medium, high- for better comprehension. To add to this, I used the variable on a multivariate graph to better showcase it with the other two predictor variables.  
+
 ##### *References*
 
 ##
@@ -170,3 +166,4 @@ Ardilles, P. (2024). Robusta vs Arabica Coffee Beans: What Sets Them Apart? FNB 
 Coffee Quality Institute. (2018). Coffee Review Data. Available at: https://www.coffeeinstitute.org
 
 International Coffee Organization. (n.d.). Coffee Grading and Evaluation Standards. Available at: https://www.ico.org
+
