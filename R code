@@ -39,29 +39,25 @@ If one finds themselves concerned over the validity of these ranking, visit [Cof
 
 If interested in how the coffee beans are rated, please feel free to visit [International Coffee Organization](https://ico.org/market-development-toolkit/page/index/8/quality/98)
 
-
+(should provide a direct link address to the picture rather than a file)
 ![Ardilles, P. (2024) Robusta vs Arabica, Robusta vs Arabica Coffee Beans: What Sets Them Apart? FNB Coffee. Available at: https://fnb.coffee/blog/robusta-vs-arabica-coffee-beans-what-sets-them-apart/?srsltid=AfmBOoqhtv4Nj-ZGQUspW8ozsjHjTouLjjOCbVgXQodEaIUJ_36qyCB-. ](/Users/reyes/OneDrive/Pictures/Images/Beans.webp)
 
 
 ## **Bivariates Analyses**
 
-
 ```{r one, echo= FALSE}
 
 library(ggplot2)
 
-ggplot(Coffee) + geom_histogram(aes(x = Rating), binwidth = 1, fill = "mistyrose", color = "mistyrose2") + labs(title = "Distribution of Coffee Bean Rating", y = NULL) + theme_light()
-
 #Graph's the distribution of Bean Rating
+ggplot(Coffee) + geom_histogram(aes(x = Rating), binwidth = 1, fill = "mistyrose", color = "mistyrose2") + labs(title = "Distribution of Coffee Bean Rating", y = NULL) + theme_light()
 
 ```
 
 The mean of the coffee bean rating is `r round(mean(Coffee$Rating, na.rm = TRUE), 2)` while the standard deviation is `r round(sd(Coffee$Rating, na.rm = TRUE), 2)`.
 
 
-
 ```{r two, echo=FALSE}
-
 
 #Graph to compare Rating and Altitude
 ggplot(Coffee) + geom_point(aes(x = Altitude, y = Rating), col = "maroon4") + labs(title = "Rating vs Altitude") + theme_bw()
@@ -71,32 +67,6 @@ ggplot(Coffee) + geom_point(aes(x = Altitude, y = Rating), col = "maroon4") + la
 
 mean1 <- aggregate(Rating ~ Altitude, data = Coffee, FUN = mean)
 sd1 <- aggregate(Rating ~ Altitude, data = Coffee, FUN = sd)
-
-
-#Graph to compare Rating and Processing Method
-
-ggplot(Coffee) + geom_boxplot(aes(x = ProcessingMethod, y = Rating), fill = "lavender", col = "plum4") + labs(title = "Processing Methods vs Rating") + theme_bw()
-
-
-#Find the stats, mean and standard diviation, of the correlation of Rating and Processing Method
-
-mean2 <- aggregate(Rating ~ ProcessingMethod, data = Coffee, FUN = mean)
-sd2 <- aggregate(Rating ~ ProcessingMethod, data = Coffee, FUN = sd)
-
-
-#Graph to compare Rating and Processing Method
-
-
-ggplot(Coffee) + geom_boxplot(aes(x = BeanColor, y = Rating), fill = "peachpuff", col = "peru") + labs(title = "Bean color vs Rating") + theme_bw()
-
-
-#Find the stats, mean and standard diviation, of the correlation of Rating and Bean Color
-
-mean3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = mean)
-sd3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = sd)
-
-
-
 ```
 
 #### **The Relationship of Altitude and Ratings**
@@ -107,6 +77,17 @@ The standard deviation of the rating when the altitutde is 1500 is `r round(sd1$
 
 By observing both of the mean and standard deviation between two different altitude's, one ca n come to the conclusion that beans produced in a higher altitude produce a **<span style="color:blue"> higher rating</span>**  than those produced in a lower altitude. To add to this observation, the graph not only supports the conclusion but adds depth. Beans that were made in an altitude of 2000 or higher doesn't automatically mean they will be rated higher, and vise versa to beans found in an altitude below 1000. 
 
+```{r two, echo=FALSE}
+
+#Graph to compare Rating and Processing Method
+ggplot(Coffee) + geom_boxplot(aes(x = ProcessingMethod, y = Rating), fill = "lavender", col = "plum4") + labs(title = "Processing Methods vs Rating") + theme_bw()
+
+
+#Find the stats, mean and standard diviation, of the correlation of Rating and Processing Method
+
+mean2 <- aggregate(Rating ~ ProcessingMethod, data = Coffee, FUN = mean)
+sd2 <- aggregate(Rating ~ ProcessingMethod, data = Coffee, FUN = sd)
+```
 
 #### **The Relationship of Processing Method and Ratings**
 
@@ -116,6 +97,18 @@ When the processing method is natural/dry, the mean of the rating is `r round(me
 The standard deviation of the rating in regards to using the natural/dry processing method `r round(sd2$Rating[sd2$ProcessingMethod == "Natural / Dry"], 2)`.  The standard deviation of the rating in regards to using the washed/wet processing method `r round(sd2$Rating[sd2$ProcessingMethod == "Washed / Wet"], 2)`
 
 From the statistics, it can be observed that if coffee beans were processsed using the natural/dry method it will have a **<span style="color:blue">slightly higher</span>** chance to be rated higher than coffee beans that used the washed/wet method.
+
+
+```{r two, echo=FALSE}
+
+#Graph to compare Rating and Bean Color
+ggplot(Coffee) + geom_boxplot(aes(x = BeanColor, y = Rating), fill = "peachpuff", col = "peru") + labs(title = "Bean color vs Rating") + theme_bw()
+
+#Find the stats, mean and standard diviation, of the correlation of Rating and Bean Color
+
+mean3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = mean)
+sd3 <- aggregate(Rating ~ BeanColor, data = Coffee, FUN = sd)
+
 
 #### **The Relationship of Bean Color and Ratings**
 
